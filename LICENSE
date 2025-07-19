@@ -1,40 +1,51 @@
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+Attribution-NonCommercial-ShareAlike 4.0 International License with Commercial Website Exception
 
 Copyright (c) 2025 Andrei Hodorog <contact@andreihodorog.com>
 
-ACCESSIBILITY SIDEBAR - ENHANCED PROTECTION LICENSE
+ACCESSIBILITY SIDEBAR - COMMERCIAL WEBSITE USE LICENSE
 
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License with additional protections.
+This work is licensed under a modified Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License with specific commercial website usage permissions.
 
 PERMITTED USES:
 - Personal, educational, and research use
 - Non-profit organization usage
-- Open source project integration (non-commercial)
+- Open source project integration
 - Modification and distribution under same license terms
 - Academic and scientific research
+- **Commercial website implementation** (with attribution requirements - see below)
+- Corporate website accessibility enhancement
+
+COMMERCIAL WEBSITE USE EXCEPTION:
+Companies and commercial entities MAY use this accessibility widget on their websites provided that:
+- Clear attribution is provided linking to: https://github.com/hodorogandrei/accessibility-sidebar
+- Attribution must be visible in the widget interface or website footer
+- No modifications to core accessibility functionality without preserving attribution
+- Use is limited to website accessibility enhancement only
 
 PROHIBITED USES:
-- Commercial use or profit generation of any kind
-- Selling, licensing, or monetizing this work or derivatives
-- Integration into commercial products or services
-- Use in proprietary software for commercial purposes
-- Revenue generation through advertisements or subscriptions
+- Selling, licensing, or monetizing this widget as a standalone product
+- Including this widget in paid software packages or subscription services
+- Offering this widget as part of paid accessibility services or products
+- Rebranding or white-labeling without explicit written permission
+- Commercial redistribution as a packaged product or service
+- Using as a core component of commercial accessibility tools or platforms
 
-REQUIREMENTS:
+ATTRIBUTION REQUIREMENTS:
 - Attribution to original author: Andrei Hodorog
+- Link to repository: https://github.com/hodorogandrei/accessibility-sidebar
 - Include this license notice in all copies or derivatives
 - Share derivative works under identical license terms
 - Provide clear notice of any modifications made
 
 ADDITIONAL PROTECTIONS:
 - Author retains all moral rights and attribution rights
-- Commercial licensing available only through written permission from author
-- Violation of non-commercial terms results in immediate license termination
+- Commercial product licensing available only through written permission from author
+- Violation of license terms results in immediate license termination
 - Legal jurisdiction: Laws of the United Kingdom
 
 DISCLAIMER:
 This software is provided "as is" without warranty of any kind. The author shall not be liable for any damages arising from the use of this software.
 
-For commercial licensing inquiries, contact: contact@andreihodorog.com
+For commercial product licensing or clarifications, contact: contact@andreihodorog.com
 
-Full CC BY-NC-SA 4.0 License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+Base License: https://creativecommons.org/licenses/by-nc-sa/4.0/

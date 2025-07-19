@@ -562,7 +562,7 @@ We actively encourage participation from neurodivergent developers and provide a
 
 ## 📄 License
 
-By contributing to this project, you agree that your contributions will be licensed under the same license as the project (CC BY-NC-SA 4.0 International License).
+By contributing to this project, you agree that your contributions will be licensed under the same license as the project (Attribution-NonCommercial-ShareAlike 4.0 International License with Commercial Website Exception).
 
 ---
 

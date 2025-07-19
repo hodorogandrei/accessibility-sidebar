@@ -219,7 +219,11 @@ Whether you're fixing bugs, adding features, improving documentation, or helping
 
 ## 📄 License
 
-CC BY-NC-SA 4.0 International License - see [LICENSE](LICENSE) file for details.
+Licensed under Attribution-NonCommercial-ShareAlike 4.0 International License with Commercial Website Exception.
+
+**Companies can use this widget on their websites with proper attribution**, but cannot profit from the tool itself (e.g., selling it as part of paid services or subscription packages).
+
+See [LICENSE](LICENSE) file for complete terms and attribution requirements.
 
 ## 🆘 Support
 
