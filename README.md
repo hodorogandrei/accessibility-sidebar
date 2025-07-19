@@ -1,6 +1,6 @@
-# Accessibility Sidebar Toolkit
+# Accessibility Sidebar
 
-A comprehensive, lightweight accessibility widget that enhances web and mobile app usability with customizable accessibility features. This toolkit provides both React Native components and web-compatible versions for maximum flexibility.
+A comprehensive, lightweight accessibility widget that enhances web and mobile app usability with customizable accessibility features. This toolkit provides both React components and vanilla JavaScript implementations for maximum flexibility.
 
 ## 🌟 Features
 
@@ -11,6 +11,8 @@ A comprehensive, lightweight accessibility widget that enhances web and mobile a
 - **💾 Persistent Settings**: Save and restore user preferences automatically
 - **📱 Responsive Design**: Works on mobile, tablet, and desktop devices
 - **🎯 Draggable Interface**: Moveable sidebar for optimal positioning
+- **⚡ Zero Dependencies**: Standalone vanilla JS version requires no external libraries
+- **📦 Multiple Formats**: Available as React component, enhanced JSX, and vanilla JS
 
 ## 🏆 Compliance Standards
 
@@ -40,33 +42,38 @@ A comprehensive, lightweight accessibility widget that enhances web and mobile a
 npm install accessibility-sidebar
 ```
 
+**Vanilla JavaScript:**
 ```javascript
-import { AccessibilitySidebarEnhanced } from 'accessibility-sidebar';
+import AccessibilitySidebar from 'accessibility-sidebar/accessibility-sidebar-enhanced.js';
 
 // Initialize the component
-const widget = AccessibilitySidebarEnhanced();
-document.body.appendChild(widget);
+const widget = new AccessibilitySidebar();
+document.body.appendChild(widget.element);
 ```
 
-### For React Native Applications
-
-```bash
-npm install accessibility-sidebar react-native-gesture-handler react-native-safe-area-context @react-native-async-storage/async-storage expo-speech react-native-vector-icons
-```
-
+**React Component:**
 ```jsx
 import React from 'react';
-import { AccessibilitySidebar } from 'accessibility-sidebar';
-import YourMainContent from './YourMainContent';
+import AccessibilitySidebar from 'accessibility-sidebar/AccessibilitySidebar.jsx';
 
 export default function App() {
   return (
-    <AccessibilitySidebar>
-      <YourMainContent />
-    </AccessibilitySidebar>
+    <div>
+      <AccessibilitySidebar />
+      <main>Your app content here</main>
+    </div>
   );
 }
 ```
+
+### Available Components
+
+This package includes multiple implementation options:
+
+- **`AccessibilitySidebar.jsx`** - Main React component  
+- **`accessibility-sidebar-enhanced.js`** - Vanilla JavaScript version
+- **`accessibility-sidebar-enhanced.jsx`** - Enhanced React component with additional features
+- **`AccessibilityExample.jsx`** - Usage example and demo component
 
 ## 🛠️ Advanced Configuration
 
@@ -87,35 +94,74 @@ window.AccessibilitySidebar({
 });
 ```
 
-### React Native Configuration
+### React Component Configuration
 
 ```jsx
+import AccessibilitySidebar from 'accessibility-sidebar/AccessibilitySidebar.jsx';
+
 <AccessibilitySidebar
   onFontSizeChange={(size) => console.log('Font size changed:', size)}
   onContrastChange={(enabled) => console.log('High contrast:', enabled)}
   onLineHeightChange={(height) => console.log('Line height:', height)}
-  targetContent={targetRef}
->
-  <YourApp />
-</AccessibilitySidebar>
+  initialPosition={{ x: 20, y: 100 }}
+  theme="light"
+/>
 ```
 
-## 📦 Build Options
+## 💻 Development Setup
 
-### For Development
+### Prerequisites
+- Node.js 16.0.0 or higher
+- npm or yarn package manager
+
+### Environment Configuration
+1. Copy the environment template:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Configure your development settings in `.env`:
+   ```bash
+   # Git Configuration (for development)
+   GIT_AUTHOR_EMAIL=your-email@example.com
+   GIT_AUTHOR_NAME=Your Name
+   
+   # Development Settings
+   NODE_ENV=development
+   ```
+
+### Build Commands
+
 ```bash
 npm run dev          # Development build with hot reload
 npm run build        # Production build
 npm run build:minified  # Highly optimized minified build
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
 ```
 
-### For Webmasters
+### Repository Structure
 
-The minified version (`accessibility-sidebar.min.js`) is optimized for production use:
-- **Small footprint**: ~15KB gzipped
-- **No dependencies**: Self-contained
-- **Universal compatibility**: Works with any website
-- **Easy integration**: Single script tag
+```
+accessibility-sidebar/
+├── src/
+│   └── index.js                          # Webpack entry point
+├── AccessibilitySidebar.jsx              # Main React component
+├── accessibility-sidebar-enhanced.js     # Vanilla JS implementation
+├── accessibility-sidebar-enhanced.jsx    # Enhanced React component
+├── AccessibilityExample.jsx              # Usage examples
+├── webpack.config.js                     # Build configuration
+├── .babelrc                              # Babel configuration
+├── .env.example                          # Environment template
+└── dist/                                 # Built files (generated)
+```
+
+### Build Output
+
+The build process generates optimized files in the `dist/` directory:
+- **`accessibility-sidebar.js`** - Development build
+- **`accessibility-sidebar.min.js`** - Production minified build (~15KB gzipped)
+- **No dependencies**: Self-contained and universal compatibility
 
 ## 🎯 Use Cases
 
