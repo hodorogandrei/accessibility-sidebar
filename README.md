@@ -4,7 +4,7 @@ A comprehensive, lightweight accessibility widget that enhances web and mobile a
 
 ## 💜 Personal Mission
 
-This project is deeply personal to me. As someone passionate about neurodivergent advocacy, I've dedicated my life to creating inclusive digital experiences. Through my work at AboutADHD.com, About ADHD Romania, and Asociația SuntAutist, I've seen firsthand how accessibility barriers can exclude and frustrate neurodivergent individuals.
+This project is deeply personal to me. As someone passionate about neurodivergent advocacy, I've dedicated my life to creating inclusive digital experiences. Through my work at [AboutADHD.com](https://aboutadhd.com), [About ADHD Romania](https://despreadhd.ro), and [Asociația SuntAutist](https://suntautist.ro), I've seen firsthand how accessibility barriers can exclude and frustrate neurodivergent individuals.
 
 Every line of code in this project represents my commitment to breaking down these barriers. This isn't just a technical tool—it's a bridge to digital inclusion for ADHD, autistic, and other neurodivergent communities who deserve equal access to the digital world.
 
