@@ -206,6 +206,17 @@ document.addEventListener('accessibilityChange', (event) => {
 - Edge 79+
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
+## 🤝 Contributing
+
+We welcome contributions from developers who share our mission of digital inclusion! Please read our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on:
+
+- Development setup and workflow
+- Accessibility testing requirements
+- Code standards and best practices
+- Community guidelines and code of conduct
+
+Whether you're fixing bugs, adding features, improving documentation, or helping with accessibility testing, your contributions help make the web more inclusive for neurodivergent individuals.
+
 ## 📄 License
 
 CC BY-NC-SA 4.0 International License - see [LICENSE](LICENSE) file for details.
