@@ -1,51 +1,35 @@
-Attribution-NonCommercial-ShareAlike 4.0 International License with Commercial Website Exception
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
 
 Copyright (c) 2025 Andrei Hodorog <contact@andreihodorog.com>
 
-ACCESSIBILITY SIDEBAR - COMMERCIAL WEBSITE USE LICENSE
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-This work is licensed under a modified Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License with specific commercial website usage permissions.
+COMMERCIAL WEBSITE USE CLARIFICATION:
 
-PERMITTED USES:
-- Personal, educational, and research use
-- Non-profit organization usage
-- Open source project integration
-- Modification and distribution under same license terms
-- Academic and scientific research
-- **Commercial website implementation** (with attribution requirements - see below)
-- Corporate website accessibility enhancement
+The CC BY-NC-SA 4.0 license prohibits commercial use. However, for the specific case of accessibility enhancement, we clarify that:
 
-COMMERCIAL WEBSITE USE EXCEPTION:
-Companies and commercial entities MAY use this accessibility widget on their websites provided that:
-- Clear attribution is provided linking to: https://github.com/hodorogandrei/accessibility-sidebar
-- Attribution must be visible in the widget interface or website footer
-- No modifications to core accessibility functionality without preserving attribution
-- Use is limited to website accessibility enhancement only
+PERMITTED under this license:
+- Using this widget on commercial websites for accessibility purposes is considered non-commercial use when:
+  * The widget is used solely for accessibility enhancement
+  * Proper attribution is provided (see requirements below)
+  * No direct revenue is generated from the widget itself
+  * The widget is not sold, licensed, or monetized as a product
 
-PROHIBITED USES:
+PROHIBITED under this license:
 - Selling, licensing, or monetizing this widget as a standalone product
 - Including this widget in paid software packages or subscription services
 - Offering this widget as part of paid accessibility services or products
-- Rebranding or white-labeling without explicit written permission
-- Commercial redistribution as a packaged product or service
-- Using as a core component of commercial accessibility tools or platforms
+- Any commercial use beyond website accessibility enhancement
 
-ATTRIBUTION REQUIREMENTS:
-- Attribution to original author: Andrei Hodorog
-- Link to repository: https://github.com/hodorogandrei/accessibility-sidebar
-- Include this license notice in all copies or derivatives
-- Share derivative works under identical license terms
-- Provide clear notice of any modifications made
+ATTRIBUTION REQUIREMENTS (CC BY):
+You must give appropriate credit to Andrei Hodorog, provide a link to https://github.com/hodorogandrei/accessibility-sidebar, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 
-ADDITIONAL PROTECTIONS:
-- Author retains all moral rights and attribution rights
-- Commercial product licensing available only through written permission from author
-- Violation of license terms results in immediate license termination
-- Legal jurisdiction: Laws of the United Kingdom
+SHAREALIKE REQUIREMENTS (SA):
+If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
 DISCLAIMER:
-This software is provided "as is" without warranty of any kind. The author shall not be liable for any damages arising from the use of this software.
+This software is provided "as is" without warranty of any kind. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
 
-For commercial product licensing or clarifications, contact: contact@andreihodorog.com
+For commercial product licensing beyond website accessibility use, contact: contact@andreihodorog.com
 
-Base License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+Full license text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode

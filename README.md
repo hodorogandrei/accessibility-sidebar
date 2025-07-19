@@ -219,9 +219,9 @@ Whether you're fixing bugs, adding features, improving documentation, or helping
 
 ## 📄 License
 
-Licensed under Attribution-NonCommercial-ShareAlike 4.0 International License with Commercial Website Exception.
+Licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-**Companies can use this widget on their websites with proper attribution**, but cannot profit from the tool itself (e.g., selling it as part of paid services or subscription packages).
+**Companies can use this widget on their websites for accessibility purposes with proper attribution**, but cannot profit from the tool itself (e.g., selling it as part of paid services or subscription packages).
 
 See [LICENSE](LICENSE) file for complete terms and attribution requirements.
 
