@@ -200,23 +200,13 @@ document.addEventListener('accessibilityChange', (event) => {
 - Edge 79+
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+CC BY-NC-SA 4.0 International License - see [LICENSE](LICENSE) file for details.
 
 ## 🆘 Support
 
-- 📧 Issues: [GitHub Issues](https://github.com/hodorogandrei/accessibility-sidebar/issues)
-- 📖 Documentation: [Full Documentation](https://github.com/hodorogandrei/accessibility-sidebar#readme)
-- 💬 Community: [Discussions](https://github.com/hodorogandrei/accessibility-sidebar/discussions)
-
-## 🌐 Live Demo
-
-Try the widget in action: [Live Demo](https://hodorogandrei.github.io/accessibility-sidebar/)
+For support and inquiries, contact: contact@andreihodorog.com
 
 ---
 
