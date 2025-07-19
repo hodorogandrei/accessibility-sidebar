@@ -7,6 +7,7 @@ yarn-error.log*
 # Local development files
 *.md
 !README.md
+!CONTRIBUTING.md
 CLAUDE.md
 README-backup.md
 
