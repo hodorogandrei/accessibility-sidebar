@@ -1,0 +1,84 @@
+{
+  "name": "accessibility-sidebar",
+  "version": "1.0.0",
+  "description": "A comprehensive, lightweight accessibility widget for web and mobile apps with WCAG 2.1 AA compliance",
+  "main": "AccessibilitySidebar.jsx",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:minified": "webpack --mode production --optimize-minimize",
+    "dev": "webpack --mode development --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepublishOnly": "npm run build:minified"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "ada",
+    "section508",
+    "widget",
+    "sidebar",
+    "text-to-speech",
+    "high-contrast",
+    "font-size",
+    "react-native",
+    "web",
+    "compliance",
+    "disability",
+    "inclusive",
+    "minified"
+  ],
+  "author": "Andrei Hodorog <andrei@hodorog.com>",
+  "homepage": "https://github.com/hodorogandrei/accessibility-sidebar#readme",
+  "bugs": {
+    "url": "https://github.com/hodorogandrei/accessibility-sidebar/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-native": "^0.72.0",
+    "react-native-gesture-handler": "^2.12.0",
+    "react-native-safe-area-context": "^4.6.0",
+    "@react-native-async-storage/async-storage": "^1.19.0",
+    "expo-speech": "^11.3.0",
+    "react-native-vector-icons": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.72.0",
+    "eslint": "^8.0.0",
+    "prettier": "^2.8.0",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.0",
+    "babel-loader": "^9.1.0",
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "@babel/preset-react": "^7.22.0",
+    "terser-webpack-plugin": "^5.3.0",
+    "css-loader": "^6.8.0",
+    "style-loader": "^3.3.0"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-native": ">=0.70.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hodorogandrei/accessibility-sidebar.git"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "AccessibilitySidebar.jsx",
+    "accessibility-sidebar-enhanced.js",
+    "accessibility-sidebar-enhanced.jsx",
+    "AccessibilityExample.jsx",
+    "README.md",
+    "LICENSE"
+  ]
+}
