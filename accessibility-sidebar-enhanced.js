@@ -25,6 +25,9 @@ window.AccessibilitySidebar = function() {
   const [highContrast, setHighContrast] = React.useState(false);
   const [lineHeight, setLineHeight] = React.useState(0); // 0: normal, 1: larger, 2: largest
   const [isReading, setIsReading] = React.useState(false);
+  
+  // Use ref to avoid closure issues with isReading
+  const isReadingRef = React.useRef(false);
 
   // Check for mobile devices
   React.useEffect(() => {
@@ -189,6 +192,7 @@ window.AccessibilitySidebar = function() {
     if (isReading) {
       window.speechSynthesis.cancel();
       setIsReading(false);
+      isReadingRef.current = false;
       setReadingProgress(0);
       setCurrentUtterance(null);
     } else {
@@ -246,8 +250,8 @@ window.AccessibilitySidebar = function() {
       let currentIndex = 0;
 
       const speakNext = () => {
-        console.log('speakNext called, currentIndex:', currentIndex, 'isReading:', isReading);
-        if (currentIndex < chunks.length && isReading) {
+        console.log('speakNext called, currentIndex:', currentIndex, 'isReading:', isReadingRef.current);
+        if (currentIndex < chunks.length && isReadingRef.current) {
           const chunk = chunks[currentIndex];
           console.log('Creating utterance for chunk', currentIndex + 1, '/', chunks.length);
           console.log('Chunk text (first 50 chars):', chunk.substring(0, 50) + '...');
@@ -290,11 +294,12 @@ window.AccessibilitySidebar = function() {
           utterance.onend = () => {
             console.log('Utterance ended! Chunk', currentIndex + 1);
             currentIndex++;
-            if (currentIndex < chunks.length) {
+            if (currentIndex < chunks.length && isReadingRef.current) {
               // Small pause between chunks
               setTimeout(speakNext, 300);
             } else {
               setIsReading(false);
+              isReadingRef.current = false;
               setReadingProgress(100);
               // Reset progress after completion
               setTimeout(() => setReadingProgress(0), 2000);
@@ -306,6 +311,7 @@ window.AccessibilitySidebar = function() {
             console.error('Error type:', event.type);
             console.error('Utterance text length:', event.utterance.text.length);
             setIsReading(false);
+            isReadingRef.current = false;
             setReadingProgress(0);
             alert('Eroare la citirea cu voce tare: ' + event.error);
           };
@@ -326,14 +332,6 @@ window.AccessibilitySidebar = function() {
           console.log('speechSynthesis.pending:', window.speechSynthesis.pending);
           console.log('speechSynthesis.paused:', window.speechSynthesis.paused);
           
-          // Add error handler before speaking
-          utterance.onerror = (event) => {
-            console.error('Speech synthesis error:', event.error);
-            console.error('Error details:', event);
-            setIsReading(false);
-            setReadingProgress(0);
-            alert('Eroare la citirea cu voce tare: ' + event.error);
-          };
           
           // Ensure we're not paused
           if (window.speechSynthesis.paused) {
@@ -367,6 +365,7 @@ window.AccessibilitySidebar = function() {
       };
 
       setIsReading(true);
+      isReadingRef.current = true;
       setReadingProgress(0);
       
       // Cancel any previous speech
@@ -381,6 +380,7 @@ window.AccessibilitySidebar = function() {
       // Small delay to ensure speech synthesis is ready
       setTimeout(() => {
         console.log('Starting speakNext after delay');
+        console.log('isReadingRef.current:', isReadingRef.current);
         speakNext();
       }, 100);
     }
@@ -475,6 +475,7 @@ window.AccessibilitySidebar = function() {
     if (isReading) {
       window.speechSynthesis.cancel();
       setIsReading(false);
+      isReadingRef.current = false;
       setReadingProgress(0);
     }
 
