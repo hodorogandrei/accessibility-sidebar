@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Speech Synthesis</title>
+</head>
+<body>
+    <h1>Test Speech Synthesis</h1>
+    <button id="test1">Test 1: Simple English</button>
+    <button id="test2">Test 2: Simple Romanian</button>
+    <button id="test3">Test 3: Romanian with Voice</button>
+    <button id="test4">Test 4: Multiple Chunks</button>
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(msg) {
+            console.log(msg);
+            output.innerHTML += msg + '<br>';
+        }
+
+        // Test 1: Simple English
+        document.getElementById('test1').addEventListener('click', () => {
+            log('Test 1: Speaking simple English...');
+            const utterance = new SpeechSynthesisUtterance('Hello, this is a test');
+            utterance.onstart = () => log('Started');
+            utterance.onend = () => log('Ended');
+            utterance.onerror = (e) => log('Error: ' + e.error);
+            speechSynthesis.speak(utterance);
+        });
+
+        // Test 2: Simple Romanian
+        document.getElementById('test2').addEventListener('click', () => {
+            log('Test 2: Speaking simple Romanian...');
+            const utterance = new SpeechSynthesisUtterance('Bună ziua, acesta este un test');
+            utterance.lang = 'ro-RO';
+            utterance.onstart = () => log('Started');
+            utterance.onend = () => log('Ended');
+            utterance.onerror = (e) => log('Error: ' + e.error);
+            speechSynthesis.speak(utterance);
+        });
+
+        // Test 3: Romanian with specific voice
+        document.getElementById('test3').addEventListener('click', () => {
+            log('Test 3: Romanian with voice selection...');
+            const voices = speechSynthesis.getVoices();
+            const roVoice = voices.find(v => v.lang.includes('ro'));
+            
+            const utterance = new SpeechSynthesisUtterance('Acesta este un test cu voce românească');
+            utterance.lang = 'ro-RO';
+            if (roVoice) {
+                utterance.voice = roVoice;
+                log('Using voice: ' + roVoice.name);
+            }
+            utterance.onstart = () => log('Started');
+            utterance.onend = () => log('Ended');
+            utterance.onerror = (e) => log('Error: ' + e.error);
+            speechSynthesis.speak(utterance);
+        });
+
+        // Test 4: Multiple chunks like our widget
+        document.getElementById('test4').addEventListener('click', () => {
+            log('Test 4: Multiple chunks...');
+            speechSynthesis.cancel(); // Cancel any previous
+            
+            const chunks = [
+                'Prima parte a textului.',
+                'A doua parte a textului.',
+                'Ultima parte a textului.'
+            ];
+            
+            let index = 0;
+            
+            function speakNext() {
+                if (index < chunks.length) {
+                    log('Speaking chunk ' + (index + 1));
+                    const utterance = new SpeechSynthesisUtterance(chunks[index]);
+                    utterance.lang = 'ro-RO';
+                    utterance.onend = () => {
+                        index++;
+                        if (index < chunks.length) {
+                            setTimeout(speakNext, 300);
+                        } else {
+                            log('All chunks completed');
+                        }
+                    };
+                    utterance.onerror = (e) => log('Error: ' + e.error);
+                    speechSynthesis.speak(utterance);
+                }
+            }
+            
+            speakNext();
+        });
+
+        // Load voices
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = () => {
+                const voices = speechSynthesis.getVoices();
+                log('Voices loaded: ' + voices.length);
+                const roVoices = voices.filter(v => v.lang.includes('ro'));
+                log('Romanian voices: ' + roVoices.map(v => v.name).join(', '));
+            };
+        }
+        
+        // Initial voice check
+        setTimeout(() => {
+            const voices = speechSynthesis.getVoices();
+            log('Initial voices: ' + voices.length);
+        }, 100);
+    </script>
+</body>
+</html>
