@@ -592,8 +592,10 @@ window.AccessibilitySidebar = function() {
           className: 'title',
           style: { fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px' }
         },
-          e('div', { className: 'a11y-icon' },
-            e('i', { className: 'fas fa-universal-access', 'aria-hidden': 'true' })
+          e('div', { className: 'a11y-icon', style: { width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+            e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+              e('path', { d: 'M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z' })
+            )
           ),
           e('span', null, 'Accesibilitate')
         ),
@@ -618,10 +620,13 @@ window.AccessibilitySidebar = function() {
           onKeyDown: (e) => handleKeyDown(e, () => setIsPanelOpen(!isPanelOpen))
         },
           e('div', { className: 'a11y-icon large' },
-            e('i', {
-              className: isPanelOpen ? 'fas fa-compress' : 'fas fa-universal-access',
-              'aria-hidden': 'true'
-            })
+            isPanelOpen 
+              ? e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+                  e('path', { d: 'M8 19V17H5V14H3V19C3 19.55 3.45 20 4 20H9V18H8V19ZM19 8V5H16V3H21V8H19ZM5 8V5H8V3H3V8H5ZM16 19V17H19V14H21V19C21 19.55 20.55 20 20 20H16V18V19Z' })
+                )
+              : e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+                  e('path', { d: 'M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z' })
+                )
           )
         )
       ),
@@ -660,8 +665,10 @@ window.AccessibilitySidebar = function() {
             width: '100%'
           }
         },
-          e('div', { className: 'a11y-icon' },
-            e('i', { className: 'fas fa-font', 'aria-hidden': 'true' })
+          e('div', { className: 'a11y-icon', style: { width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+            e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+              e('path', { d: 'M9.62 12L12 5.67L14.37 12M11 3L5.5 21h2.25l1.12-3h6.25l1.13 3h2.25L13 3h-2z' })
+            )
           ),
           e('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' } },
             e('span', null, 'Mărime text'),
@@ -694,8 +701,14 @@ window.AccessibilitySidebar = function() {
             width: '100%'
           }
         },
-          e('div', { className: 'a11y-icon' },
-            e('i', { className: highContrast ? 'fas fa-sun' : 'fas fa-moon', 'aria-hidden': 'true' })
+          e('div', { className: 'a11y-icon', style: { width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+            highContrast
+              ? e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+                  e('path', { d: 'M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z' })
+                )
+              : e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+                  e('path', { d: 'M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z' })
+                )
           ),
           e('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' } },
             e('span', null, 'Contrast'),
@@ -728,8 +741,10 @@ window.AccessibilitySidebar = function() {
             width: '100%'
           }
         },
-          e('div', { className: 'a11y-icon' },
-            e('i', { className: 'fas fa-align-justify', 'aria-hidden': 'true' })
+          e('div', { className: 'a11y-icon', style: { width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+            e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+              e('path', { d: 'M3 3h18v2H3zm0 4h18v2H3zm0 4h18v2H3zm0 4h18v2H3zm0 4h18v2H3z' })
+            )
           ),
           e('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' } },
             e('span', null, 'Spațiu între rânduri'),
@@ -764,11 +779,15 @@ window.AccessibilitySidebar = function() {
             width: '100%'
           }
         },
-          e('div', { className: 'a11y-icon' },
-            e('i', {
-              className: isReading ? 'fas fa-volume-mute' : 'fas fa-volume-up',
-              'aria-hidden': 'true'
-            })
+          e('div', { className: 'a11y-icon', style: { width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+            isReading
+              ? e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+                  e('path', { d: 'M7 9v6h4l5 5V4l-5 5H7z' }),
+                  e('rect', { x: '3', y: '11', width: '18', height: '2', transform: 'rotate(-45 12 12)' })
+                )
+              : e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+                  e('path', { d: 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z' })
+                )
           ),
           e('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' } },
             e('span', null, isReading ? "Oprește citirea" : "Citește cu voce tare"),
@@ -800,8 +819,11 @@ window.AccessibilitySidebar = function() {
             width: '100%'
           }
         },
-          e('div', { className: 'a11y-icon' },
-            e('i', { className: 'fas fa-tachometer-alt', 'aria-hidden': 'true' })
+          e('div', { className: 'a11y-icon', style: { width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+            e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+              e('path', { d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z' }),
+              e('path', { d: 'M12 6v6l4 2-1 1.73L10.27 13V6z' })
+            )
           ),
           e('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' } },
             e('span', null, 'Viteza citirii'),
@@ -831,8 +853,11 @@ window.AccessibilitySidebar = function() {
             width: '100%'
           }
         },
-          e('div', { className: 'a11y-icon' },
-            e('i', { className: 'fas fa-microphone', 'aria-hidden': 'true' })
+          e('div', { className: 'a11y-icon', style: { width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+            e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+              e('path', { d: 'M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z' }),
+              e('path', { d: 'M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z' })
+            )
           ),
           e('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' } },
             e('span', null, 'Voce narrator'),
@@ -864,8 +889,10 @@ window.AccessibilitySidebar = function() {
             width: '100%'
           }
         },
-          e('div', { className: 'a11y-icon' },
-            e('i', { className: 'fas fa-undo', 'aria-hidden': 'true' })
+          e('div', { className: 'a11y-icon', style: { width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+            e('svg', { width: '20', height: '20', viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': 'true' },
+              e('path', { d: 'M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z' })
+            )
           ),
           e('span', null, 'Resetează setările')
         )
