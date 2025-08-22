@@ -35,7 +35,14 @@ module.exports = (env, argv) => {
       ]
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        'react-native$': 'react-native-web',
+        'react-native-vector-icons': 'react-native-vector-icons/dist',
+        'react-native-safe-area-context': path.resolve(__dirname, 'src/mocks/react-native-safe-area-context.js'),
+        '@react-native-async-storage/async-storage': path.resolve(__dirname, 'src/mocks/async-storage.js'),
+        'expo-speech': path.resolve(__dirname, 'src/mocks/expo-speech.js')
+      }
     },
     optimization: {
       minimize: isProduction,
