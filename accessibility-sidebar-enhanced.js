@@ -195,24 +195,28 @@ window.AccessibilitySidebar = function() {
       // Get all the text from the main content
       const contentArea = document.querySelector('.content-area') || document.querySelector('main') || document.body;
       
-      // Get text content from relevant elements, excluding navigation and controls
-      const textElements = contentArea.querySelectorAll('p, li, h1, h2, h3, h4, h5, h6, blockquote, td');
+      // Get text content from relevant elements
+      const textElements = contentArea.querySelectorAll('p, li, h1, h2, h3, h4, h5, h6, blockquote, td, .tagline, .quote');
+      
+      console.log('Speech Debug Info:');
+      console.log('- speechSynthesis available:', 'speechSynthesis' in window);
+      console.log('- Total voices:', window.speechSynthesis.getVoices().length);
+      console.log('- Romanian voices:', availableRomanianVoices.length);
+      console.log('- Selected voice:', selectedVoice?.name || 'none');
+      console.log('- Found elements:', textElements.length);
+      
       const textContent = Array.from(textElements)
         .filter(el => {
-          // Exclude navigation, accessibility controls, and other UI elements
-          return !el.closest('.toc') && 
-                 !el.closest('.content-nav') && 
-                 !el.closest('.accessibility-sidebar') &&
-                 !el.closest('.back-to-top') &&
-                 !el.closest('.search-container') &&
-                 !el.closest('nav') &&
-                 !el.closest('header') &&
-                 !el.closest('footer') &&
+          // Only exclude the accessibility sidebar itself
+          return !el.closest('.accessibility-sidebar') &&
                  !el.classList.contains('sr-only');
         })
         .map(el => el.textContent.trim())
         .filter(text => text.length > 0)
         .join('. ');
+
+      console.log('- Text content length:', textContent.length);
+      console.log('- First 100 chars:', textContent.substring(0, 100));
 
       if (!textContent) {
         alert('Nu s-a găsit conținut pentru citire');
