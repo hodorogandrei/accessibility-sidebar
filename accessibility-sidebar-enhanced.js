@@ -793,3 +793,8 @@ window.AccessibilitySidebar = function() {
     )
   );
 };
+
+// Also export as default for module systems
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = window.AccessibilitySidebar;
+};

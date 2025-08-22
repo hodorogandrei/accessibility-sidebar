@@ -360,16 +360,29 @@
         </footer>
     </div>
 
-    <!-- Accessibility Widget Script -->
-    <script src="../dist/accessibility-sidebar.js"></script>
+    <!-- Load React and ReactDOM first -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    
+    <!-- Container for the widget -->
+    <div id="accessibility-sidebar-root"></div>
+    
+    <!-- Load and initialize the accessibility widget -->
+    <script src="../accessibility-sidebar-enhanced.js"></script>
     <script>
-        // Initialize the accessibility sidebar when DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.AccessibilitySidebar) {
-                window.AccessibilitySidebar();
+        // Initialize the accessibility sidebar when everything is loaded
+        window.addEventListener('load', function() {
+            if (typeof window.AccessibilitySidebar === 'function' && window.React && window.ReactDOM) {
+                const container = document.getElementById('accessibility-sidebar-root');
+                const element = React.createElement(window.AccessibilitySidebar);
+                ReactDOM.render(element, container);
                 console.log('Accessibility Sidebar initialized successfully');
             } else {
-                console.error('Accessibility Sidebar not loaded');
+                console.error('Missing dependencies:', {
+                    AccessibilitySidebar: typeof window.AccessibilitySidebar,
+                    React: !!window.React,
+                    ReactDOM: !!window.ReactDOM
+                });
             }
         });
     </script>
