@@ -37,6 +37,71 @@ window.AccessibilitySidebar = function() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Load saved settings on mount
+  React.useEffect(() => {
+    try {
+      const savedSettings = localStorage.getItem('accessibilitySettings');
+      if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        if (settings.fontSize !== undefined) {
+          setFontSize(settings.fontSize);
+          applyFontSizeClass(settings.fontSize);
+        }
+        if (settings.highContrast !== undefined) {
+          setHighContrast(settings.highContrast);
+          applyHighContrastClass(settings.highContrast);
+        }
+        if (settings.lineHeight !== undefined) {
+          setLineHeight(settings.lineHeight);
+          applyLineHeightClass(settings.lineHeight);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading accessibility settings:', error);
+    }
+  }, []);
+
+  // Save settings whenever they change
+  React.useEffect(() => {
+    try {
+      const settings = {
+        fontSize,
+        highContrast,
+        lineHeight
+      };
+      localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
+    } catch (error) {
+      console.error('Error saving accessibility settings:', error);
+    }
+  }, [fontSize, highContrast, lineHeight]);
+
+  // Helper functions to apply classes
+  const applyFontSizeClass = (size) => {
+    document.body.classList.remove('font-size-larger', 'font-size-largest');
+    if (size === 1) {
+      document.body.classList.add('font-size-larger');
+    } else if (size === 2) {
+      document.body.classList.add('font-size-largest');
+    }
+  };
+
+  const applyHighContrastClass = (enabled) => {
+    if (enabled) {
+      document.body.classList.add('high-contrast');
+    } else {
+      document.body.classList.remove('high-contrast');
+    }
+  };
+
+  const applyLineHeightClass = (height) => {
+    document.body.classList.remove('line-height-larger', 'line-height-largest');
+    if (height === 1) {
+      document.body.classList.add('line-height-larger');
+    } else if (height === 2) {
+      document.body.classList.add('line-height-largest');
+    }
+  };
+
   // Voice setup and management
   React.useEffect(() => {
     const updateVoices = () => {
@@ -352,6 +417,77 @@ window.AccessibilitySidebar = function() {
   return e(React.Fragment, null,
     // Enhanced CSS for animations and narrator features
     e('style', null, `
+      /* Accessibility feature styles */
+      body.font-size-larger {
+        font-size: 120% !important;
+      }
+      
+      body.font-size-larger * {
+        font-size: inherit !important;
+      }
+      
+      body.font-size-largest {
+        font-size: 150% !important;
+      }
+      
+      body.font-size-largest * {
+        font-size: inherit !important;
+      }
+      
+      body.high-contrast {
+        background: #000 !important;
+        color: #fff !important;
+      }
+      
+      body.high-contrast * {
+        background-color: #000 !important;
+        color: #fff !important;
+        border-color: #fff !important;
+      }
+      
+      body.high-contrast a {
+        color: #ffff00 !important;
+        text-decoration: underline !important;
+      }
+      
+      body.high-contrast button,
+      body.high-contrast input[type="button"],
+      body.high-contrast input[type="submit"] {
+        background: #fff !important;
+        color: #000 !important;
+        border: 2px solid #fff !important;
+      }
+      
+      body.high-contrast img {
+        opacity: 0.8 !important;
+        filter: contrast(150%) !important;
+      }
+      
+      body.high-contrast .content-section,
+      body.high-contrast .card,
+      body.high-contrast .testimonial,
+      body.high-contrast header,
+      body.high-contrast footer {
+        background: #000 !important;
+        border: 2px solid #fff !important;
+      }
+      
+      body.line-height-larger {
+        line-height: 1.8 !important;
+      }
+      
+      body.line-height-larger * {
+        line-height: inherit !important;
+      }
+      
+      body.line-height-largest {
+        line-height: 2.2 !important;
+      }
+      
+      body.line-height-largest * {
+        line-height: inherit !important;
+      }
+      
       @keyframes pulse {
         0% { opacity: 0.4; }
         50% { opacity: 1; }
