@@ -192,6 +192,11 @@ window.AccessibilitySidebar = function() {
       setReadingProgress(0);
       setCurrentUtterance(null);
     } else {
+      // Browser autoplay policy workaround - speak a tiny utterance immediately
+      const activationUtterance = new SpeechSynthesisUtterance(' ');
+      activationUtterance.volume = 0.01;
+      window.speechSynthesis.speak(activationUtterance);
+      console.log('Activated speech synthesis with silent utterance');
       // Get all the text from the main content
       const contentArea = document.querySelector('.content-area') || document.querySelector('main') || document.body;
       
@@ -241,24 +246,49 @@ window.AccessibilitySidebar = function() {
       let currentIndex = 0;
 
       const speakNext = () => {
+        console.log('speakNext called, currentIndex:', currentIndex, 'isReading:', isReading);
         if (currentIndex < chunks.length && isReading) {
-          const utterance = new SpeechSynthesisUtterance(chunks[currentIndex]);
+          const chunk = chunks[currentIndex];
+          console.log('Creating utterance for chunk', currentIndex + 1, '/', chunks.length);
+          console.log('Chunk text (first 50 chars):', chunk.substring(0, 50) + '...');
+          
+          const utterance = new SpeechSynthesisUtterance(chunk);
           utterance.lang = 'ro-RO';
           utterance.rate = speechRate;
           utterance.pitch = speechPitch;
           utterance.volume = 1.0;
 
-          // Use selected voice if available
+          // Use selected voice if available - ensure voices are loaded
+          const currentVoices = window.speechSynthesis.getVoices();
+          console.log('Available voices at speak time:', currentVoices.length);
+          
           if (selectedVoice) {
-            utterance.voice = selectedVoice;
+            // Find the voice in current voices list to ensure it's still valid
+            const foundVoice = currentVoices.find(v => v.name === selectedVoice.name);
+            if (foundVoice) {
+              utterance.voice = foundVoice;
+              console.log('Setting voice to:', foundVoice.name);
+            } else {
+              console.log('Selected voice not found in current voices, using default');
+              // Try to find any Romanian voice
+              const roVoice = currentVoices.find(v => v.lang.includes('ro'));
+              if (roVoice) {
+                utterance.voice = roVoice;
+                console.log('Using fallback Romanian voice:', roVoice.name);
+              }
+            }
+          } else {
+            console.log('No voice selected, using default with ro-RO');
           }
 
           utterance.onstart = () => {
+            console.log('Utterance started! Chunk', currentIndex + 1);
             const progress = Math.round((currentIndex / chunks.length) * 100);
             setReadingProgress(progress);
           };
 
           utterance.onend = () => {
+            console.log('Utterance ended! Chunk', currentIndex + 1);
             currentIndex++;
             if (currentIndex < chunks.length) {
               // Small pause between chunks
@@ -273,13 +303,66 @@ window.AccessibilitySidebar = function() {
 
           utterance.onerror = (event) => {
             console.error('Speech synthesis error:', event.error);
+            console.error('Error type:', event.type);
+            console.error('Utterance text length:', event.utterance.text.length);
             setIsReading(false);
             setReadingProgress(0);
             alert('Eroare la citirea cu voce tare: ' + event.error);
           };
+          
+          utterance.onpause = () => {
+            console.log('Utterance paused');
+          };
+          
+          utterance.onresume = () => {
+            console.log('Utterance resumed');
+          };
 
           setCurrentUtterance(utterance);
-          window.speechSynthesis.speak(utterance);
+          
+          // Additional debugging for speech synthesis
+          console.log('About to call speechSynthesis.speak()');
+          console.log('speechSynthesis.speaking:', window.speechSynthesis.speaking);
+          console.log('speechSynthesis.pending:', window.speechSynthesis.pending);
+          console.log('speechSynthesis.paused:', window.speechSynthesis.paused);
+          
+          // Add error handler before speaking
+          utterance.onerror = (event) => {
+            console.error('Speech synthesis error:', event.error);
+            console.error('Error details:', event);
+            setIsReading(false);
+            setReadingProgress(0);
+            alert('Eroare la citirea cu voce tare: ' + event.error);
+          };
+          
+          // Ensure we're not paused
+          if (window.speechSynthesis.paused) {
+            console.log('Speech synthesis was paused, resuming...');
+            window.speechSynthesis.resume();
+          }
+          
+          // Try speaking
+          console.log('Calling speechSynthesis.speak() with utterance');
+          try {
+            window.speechSynthesis.speak(utterance);
+            console.log('speak() called successfully');
+          } catch (error) {
+            console.error('Error calling speak():', error);
+          }
+          
+          // Check if speech started
+          setTimeout(() => {
+            console.log('After speak() call:');
+            console.log('- speaking:', window.speechSynthesis.speaking);
+            console.log('- pending:', window.speechSynthesis.pending);
+            console.log('- paused:', window.speechSynthesis.paused);
+            
+            // If not speaking and not pending, try again
+            if (!window.speechSynthesis.speaking && !window.speechSynthesis.pending) {
+              console.log('Speech not started, trying again...');
+              window.speechSynthesis.speak(utterance);
+            }
+          }, 100);
         }
       };
 
@@ -288,9 +371,18 @@ window.AccessibilitySidebar = function() {
       
       // Cancel any previous speech
       window.speechSynthesis.cancel();
+      console.log('Cancelled previous speech');
+      console.log('Starting to speak', chunks.length, 'chunks');
       
-      // Start speaking
-      setTimeout(speakNext, 100); // Small delay to ensure cancellation is complete
+      // Ensure voices are loaded before starting
+      const voices = window.speechSynthesis.getVoices();
+      console.log('Voices available before starting:', voices.length);
+      
+      // Small delay to ensure speech synthesis is ready
+      setTimeout(() => {
+        console.log('Starting speakNext after delay');
+        speakNext();
+      }, 100);
     }
   };
 
