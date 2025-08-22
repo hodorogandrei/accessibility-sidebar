@@ -8,9 +8,13 @@
     "build:minified": "webpack --mode production --optimize-minimize",
     "dev": "webpack --mode development --watch",
     "test": "echo \"Running manual accessibility tests...\" && npm run test:dev",
+    "pretest:dev": "node scripts/kill-port.js 8080",
     "test:dev": "concurrently \"npm run dev\" \"npm run serve:test\"",
+    "preserve:test": "node scripts/kill-port.js 8080",
     "serve:test": "http-server . -p 8080 -o /test/index.html",
+    "pretest:build": "node scripts/kill-port.js 8080",
     "test:build": "webpack --mode development && http-server . -p 8080 -o /test/index.html",
+    "kill-port": "node scripts/kill-port.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepublishOnly": "npm run build:minified"
