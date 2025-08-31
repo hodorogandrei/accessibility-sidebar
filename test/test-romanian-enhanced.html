@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Romanian TTS Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .output {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .slider-container {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        .voice-info {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .test-case {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .status.active {
+            background: #4CAF50;
+            color: white;
+        }
+        .status.inactive {
+            background: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎤 Enhanced Romanian Text-to-Speech Testing</h1>
+    
+    <div class="container">
+        <div class="panel">
+            <h2>Standard Implementation</h2>
+            <textarea id="standardText" placeholder="Introduceți textul pentru sinteza standard...">
+Bună ziua! Aceasta este o demonstrație a sistemului de text-to-speech pentru limba română. Sistemul poate citi cu voce tare orice text în limba română, inclusiv numere precum 25 sau 1000, și poate gestiona propoziții complexe cu diacritice: ă, â, î, ș, ț. Ce părere aveți despre această funcționalitate? Mulțumesc pentru atenție!
+            </textarea>
+            
+            <div class="slider-container">
+                <label>Rate: <span id="standardRateValue">1.0</span></label>
+                <input type="range" id="standardRate" min="0.5" max="2" step="0.1" value="1">
+            </div>
+            
+            <div class="slider-container">
+                <label>Pitch: <span id="standardPitchValue">1.0</span></label>
+                <input type="range" id="standardPitch" min="0.5" max="2" step="0.1" value="1">
+            </div>
+            
+            <button id="playStandard">▶️ Play Standard</button>
+            <button id="stopStandard">⏹️ Stop</button>
+            
+            <div class="voice-info" id="standardVoiceInfo">
+                Voice: <span id="standardVoiceName">Not selected</span>
+            </div>
+            
+            <div class="output" id="standardOutput">Standard output will appear here...</div>
+        </div>
+        
+        <div class="panel">
+            <h2>Enhanced Implementation</h2>
+            <textarea id="enhancedText" placeholder="Introduceți textul pentru sinteza îmbunătățită...">
+Bună ziua! Aceasta este o demonstrație a sistemului de text-to-speech pentru limba română. Sistemul poate citi cu voce tare orice text în limba română, inclusiv numere precum 25 sau 1000, și poate gestiona propoziții complexe cu diacritice: ă, â, î, ș, ț. Ce părere aveți despre această funcționalitate? Mulțumesc pentru atenție!
+            </textarea>
+            
+            <div class="slider-container">
+                <label>Rate: <span id="enhancedRateValue">0.9</span></label>
+                <input type="range" id="enhancedRate" min="0.5" max="2" step="0.1" value="0.9">
+            </div>
+            
+            <div class="slider-container">
+                <label>Pitch: <span id="enhancedPitchValue">1.05</span></label>
+                <input type="range" id="enhancedPitch" min="0.5" max="2" step="0.1" value="1.05">
+            </div>
+            
+            <button id="playEnhanced">▶️ Play Enhanced</button>
+            <button id="stopEnhanced">⏹️ Stop</button>
+            
+            <div class="voice-info" id="enhancedVoiceInfo">
+                Voice: <span id="enhancedVoiceName">Not selected</span>
+            </div>
+            
+            <div class="output" id="enhancedOutput">Enhanced output will appear here...</div>
+        </div>
+    </div>
+    
+    <div class="panel" style="margin-top: 20px;">
+        <h2>Test Cases</h2>
+        
+        <div class="test-case">
+            <h3>🔢 Numbers & Dates</h3>
+            <p>Astăzi este 22 ianuarie 2025. Am 35 de ani și locuiesc la numărul 127.</p>
+            <div class="comparison">
+                <button class="test-btn" data-test="numbers">Test Standard</button>
+                <button class="test-btn-enhanced" data-test="numbers">Test Enhanced</button>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>❓ Questions & Intonation</h3>
+            <p>Cum te simți astăzi? Este totul în regulă? Sper că da!</p>
+            <div class="comparison">
+                <button class="test-btn" data-test="questions">Test Standard</button>
+                <button class="test-btn-enhanced" data-test="questions">Test Enhanced</button>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>🎯 Complex Diacritics</h3>
+            <p>Învățământul românesc îmbunătățește cunoștințele copiilor. Această schimbare aduce îmbunătățiri semnificative.</p>
+            <div class="comparison">
+                <button class="test-btn" data-test="diacritics">Test Standard</button>
+                <button class="test-btn-enhanced" data-test="diacritics">Test Enhanced</button>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>🗣️ Common Phrases</h3>
+            <p>Bună ziua! Vă rog să mă scuzați. Mulțumesc foarte mult! Cu plăcere! La revedere!</p>
+            <div class="comparison">
+                <button class="test-btn" data-test="phrases">Test Standard</button>
+                <button class="test-btn-enhanced" data-test="phrases">Test Enhanced</button>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>📖 Long Text</h3>
+            <p>România este o țară situată în sud-estul Europei. Capitala țării este București, cel mai mare oraș din România. Țara are o populație de aproximativ 19 milioane de locuitori și o suprafață de 238.397 kilometri pătrați. România este membră a Uniunii Europene din 2007 și a NATO din 2004.</p>
+            <div class="comparison">
+                <button class="test-btn" data-test="longtext">Test Standard</button>
+                <button class="test-btn-enhanced" data-test="longtext">Test Enhanced</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel" style="margin-top: 20px;">
+        <h2>Available Voices</h2>
+        <div id="voicesList" class="output"></div>
+    </div>
+
+    <script type="module">
+        import RomanianTTSEnhancer from '../romanian-tts-enhancer.js';
+        
+        const enhancer = new RomanianTTSEnhancer();
+        let availableVoices = [];
+        let selectedVoice = null;
+        
+        const testTexts = {
+            numbers: "Astăzi este 22 ianuarie 2025. Am 35 de ani și locuiesc la numărul 127.",
+            questions: "Cum te simți astăzi? Este totul în regulă? Sper că da!",
+            diacritics: "Învățământul românesc îmbunătățește cunoștințele copiilor. Această schimbare aduce îmbunătățiri semnificative.",
+            phrases: "Bună ziua! Vă rog să mă scuzați. Mulțumesc foarte mult! Cu plăcere! La revedere!",
+            longtext: "România este o țară situată în sud-estul Europei. Capitala țării este București, cel mai mare oraș din România. Țara are o populație de aproximativ 19 milioane de locuitori și o suprafață de 238.397 kilometri pătrați. România este membră a Uniunii Europene din 2007 și a NATO din 2004."
+        };
+        
+        function loadVoices() {
+            const voices = speechSynthesis.getVoices();
+            availableVoices = voices.filter(v => 
+                v.lang.includes('ro') || 
+                v.name.toLowerCase().includes('romanian') ||
+                v.name.toLowerCase().includes('română')
+            );
+            
+            if (availableVoices.length > 0 && !selectedVoice) {
+                selectedVoice = availableVoices.find(v => 
+                    !v.name.toLowerCase().includes('compact') &&
+                    !v.name.toLowerCase().includes('standard')
+                ) || availableVoices[0];
+                
+                updateVoiceInfo();
+            }
+            
+            displayVoices();
+        }
+        
+        function displayVoices() {
+            const voicesList = document.getElementById('voicesList');
+            if (availableVoices.length === 0) {
+                voicesList.textContent = 'No Romanian voices found. Loading...';
+                return;
+            }
+            
+            voicesList.innerHTML = availableVoices.map((v, i) => 
+                `${i + 1}. ${v.name} (${v.lang}) - ${v.localService ? 'Local' : 'Remote'}`
+            ).join('\\n');
+        }
+        
+        function updateVoiceInfo() {
+            if (selectedVoice) {
+                document.getElementById('standardVoiceName').textContent = selectedVoice.name;
+                document.getElementById('enhancedVoiceName').textContent = selectedVoice.name;
+            }
+        }
+        
+        function playStandardTTS(text) {
+            speechSynthesis.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ro-RO';
+            utterance.rate = parseFloat(document.getElementById('standardRate').value);
+            utterance.pitch = parseFloat(document.getElementById('standardPitch').value);
+            
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
+            
+            const output = document.getElementById('standardOutput');
+            output.textContent = 'Starting standard playback...\\n';
+            output.textContent += `Text: ${text}\\n`;
+            output.textContent += `Rate: ${utterance.rate}, Pitch: ${utterance.pitch}\\n`;
+            
+            utterance.onstart = () => {
+                output.textContent += 'Playback started\\n';
+            };
+            
+            utterance.onend = () => {
+                output.textContent += 'Playback completed\\n';
+            };
+            
+            utterance.onerror = (e) => {
+                output.textContent += `Error: ${e.error}\\n`;
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+        
+        function playEnhancedTTS(text) {
+            speechSynthesis.cancel();
+            
+            const output = document.getElementById('enhancedOutput');
+            output.textContent = 'Processing text with enhancements...\\n';
+            
+            const processedText = enhancer.detectAndFixCommonErrors(text);
+            const enhancedData = enhancer.createEnhancedUtterance(processedText, selectedVoice);
+            
+            output.textContent += `Original: ${text}\\n`;
+            output.textContent += `Chunks: ${enhancedData.chunks.length}\\n`;
+            output.textContent += `Enhanced chunks:\\n`;
+            enhancedData.chunks.forEach((chunk, i) => {
+                output.textContent += `  ${i + 1}: ${chunk}\\n`;
+            });
+            
+            let currentChunk = 0;
+            
+            function speakNextChunk() {
+                if (currentChunk < enhancedData.chunks.length) {
+                    const chunk = enhancedData.chunks[currentChunk];
+                    const utterance = new SpeechSynthesisUtterance(chunk);
+                    
+                    utterance.lang = 'ro-RO';
+                    utterance.rate = enhancer.applyAdaptiveRate(chunk, parseFloat(document.getElementById('enhancedRate').value));
+                    utterance.pitch = parseFloat(document.getElementById('enhancedPitch').value);
+                    
+                    if (selectedVoice) {
+                        utterance.voice = selectedVoice;
+                    }
+                    
+                    utterance.onstart = () => {
+                        output.textContent += `Playing chunk ${currentChunk + 1}/${enhancedData.chunks.length}\\n`;
+                    };
+                    
+                    utterance.onend = () => {
+                        currentChunk++;
+                        if (currentChunk < enhancedData.chunks.length) {
+                            setTimeout(speakNextChunk, 250);
+                        } else {
+                            output.textContent += 'Enhanced playback completed\\n';
+                        }
+                    };
+                    
+                    utterance.onerror = (e) => {
+                        output.textContent += `Error in chunk ${currentChunk + 1}: ${e.error}\\n`;
+                    };
+                    
+                    speechSynthesis.speak(utterance);
+                }
+            }
+            
+            speakNextChunk();
+        }
+        
+        // Event listeners
+        document.getElementById('playStandard').addEventListener('click', () => {
+            const text = document.getElementById('standardText').value;
+            playStandardTTS(text);
+        });
+        
+        document.getElementById('playEnhanced').addEventListener('click', () => {
+            const text = document.getElementById('enhancedText').value;
+            playEnhancedTTS(text);
+        });
+        
+        document.getElementById('stopStandard').addEventListener('click', () => {
+            speechSynthesis.cancel();
+            document.getElementById('standardOutput').textContent += 'Playback stopped\\n';
+        });
+        
+        document.getElementById('stopEnhanced').addEventListener('click', () => {
+            speechSynthesis.cancel();
+            document.getElementById('enhancedOutput').textContent += 'Playback stopped\\n';
+        });
+        
+        // Slider updates
+        document.getElementById('standardRate').addEventListener('input', (e) => {
+            document.getElementById('standardRateValue').textContent = e.target.value;
+        });
+        
+        document.getElementById('standardPitch').addEventListener('input', (e) => {
+            document.getElementById('standardPitchValue').textContent = e.target.value;
+        });
+        
+        document.getElementById('enhancedRate').addEventListener('input', (e) => {
+            document.getElementById('enhancedRateValue').textContent = e.target.value;
+        });
+        
+        document.getElementById('enhancedPitch').addEventListener('input', (e) => {
+            document.getElementById('enhancedPitchValue').textContent = e.target.value;
+        });
+        
+        // Test case buttons
+        document.querySelectorAll('.test-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const testKey = e.target.dataset.test;
+                playStandardTTS(testTexts[testKey]);
+            });
+        });
+        
+        document.querySelectorAll('.test-btn-enhanced').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const testKey = e.target.dataset.test;
+                playEnhancedTTS(testTexts[testKey]);
+            });
+        });
+        
+        // Initialize voices
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+        
+        // Initial load
+        setTimeout(loadVoices, 100);
+        
+        // Sync text areas
+        document.getElementById('standardText').addEventListener('input', (e) => {
+            document.getElementById('enhancedText').value = e.target.value;
+        });
+        
+        document.getElementById('enhancedText').addEventListener('input', (e) => {
+            document.getElementById('standardText').value = e.target.value;
+        });
+    </script>
+</body>
+</html>
